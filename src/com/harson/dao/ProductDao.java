@@ -3,10 +3,12 @@ package com.harson.dao;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.harson.domain.Category;
@@ -82,5 +84,31 @@ public class ProductDao {
 			runner.update(conn, sql, item.getItemid(), item.getCount(), item.getSubtotal(),
 					item.getProduct().getPid(), item.getOrder().getOid());
 		}
+	}
+
+	//将订单更新数据库orders
+	public int updateOrder(Order order, String oid) throws SQLException {
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "update orders set address = ?, name = ?, telephone = ? where oid = ?";
+		return runner.update(sql, order.getAddress(), order.getName(), order.getTelephone(), oid);
+	}
+
+	//从数据库中选出当前用户所有订单
+	public List<Order> getOrders(String uid) throws SQLException {
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "select * from orders where uid = ?";
+		return runner.query(sql, new BeanListHandler<Order>(Order.class), uid);
+		
+	}
+
+	//根据订单的oid，查询其所有的订单项和商品信息
+	public List<Map<String, Object>> getOrderItemsByOid(String oid) throws SQLException{
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "select i.itemid, i.count, i.subtotal, p.pimage, p.pname, p.shop_price, p.pid, p.cid "
+				+ "from orderitem i, product p "
+				+ "where i.pid = p.pid and i.oid = ?";
+		//MapListHandler能将查询到的关系表全部返回，每行一个list项。String代表列名，Object为当前行的该列元素
+		List<Map<String, Object>> query = runner.query(sql, new MapListHandler(), oid);
+		return query;
 	}
 }

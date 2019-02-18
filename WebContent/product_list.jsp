@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>会员登录</title>
+<title>商品列表</title>
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
@@ -34,13 +34,21 @@ body {
 
 
 	<div class="row" style="width: 1210px; margin: 0 auto;">
+		<c:if test="${pageBean.totalCount != 0 }">
 		<div class="col-md-12">
 			<ol class="breadcrumb">
-				<li><a href="#">首页</a></li>
+					<li><a href="${pageContext.request.contextPath}/productListByCid?cid=${cid}&page=1">首页</a></li>
 			</ol>
 		</div>
+		</c:if>
 		
 		<!-- 商品信息 -->
+		<!-- 当前分类下还没有商品 -->
+		<c:if test="${pageBean.totalCount == 0 }">
+			<h3 style="margin-top:50px; margin-bottom:50px; text-align:center; color:rgb(58, 114, 162)">
+				当前分类下还没有商品
+			</h3>
+		</c:if>
 		
 		<c:forEach items="${pageBean.list}" var="pro">
 			<div class="col-md-2" style="height:250px">
@@ -60,6 +68,7 @@ body {
 	</div>
 
 	<!--分页 -->
+	<c:if test="${pageBean.totalCount != 0 }">
 	<div style="width: 380px; margin: 0 auto; margin-top: 50px;">
 		<ul class="pagination" style="text-align: center; margin-top: 10px;">
 			<!-- <li class="disabled"><a href="#" aria-label="Previous"><span
@@ -110,6 +119,7 @@ body {
 			
 		</ul>
 	</div>
+	</c:if>
 	<!-- 分页结束 -->
 
 	<!--商品浏览记录-->
@@ -117,16 +127,16 @@ body {
 		style="width: 1210px; margin: 0 auto; padding: 0 9px; border: 1px solid #ddd; border-top: 2px solid #999; height: 246px;">
 
 		<h4 style="width: 50%; float: left; font: 14px/30px 微软雅黑">浏览记录</h4>
-		<div style="width: 50%; float: right; text-align: right;">
-			<a href="">more</a>
-		</div>
+		
 		<div style="clear: both;"></div>
 
 		<div style="overflow: hidden;">
 			<ul style="list-style: none;">
 				<c:forEach items="${historyProList }" var="pro">					
 					<li style="width: 150px; height: 216; float: left; margin: 0 8px 0 0; padding: 0 18px 15px; text-align: center;">
-						<img src="${pageContext.request.contextPath}/${pro.pimage}" width="130px" height="130px" />
+						<a href="${pageContext.request.contextPath}/productInfo?pid=${pro.pid}&cid=${pro.cid}">
+							<img src="${pageContext.request.contextPath}/${pro.pimage}" width="130px" height="130px" />
+						</a>
 					</li>
 				</c:forEach>
 				

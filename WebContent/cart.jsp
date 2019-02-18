@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>黑马商城购物车</title>
+		<title>地猫商城购物车</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 		<script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
 		<script src="js/bootstrap.min.js" type="text/javascript"></script>
@@ -50,7 +50,22 @@
 						 location.href = "${pageContext.request.contextPath}/login.jsp";
 					 }
 				}else{
-					location.href = "${pageContext.request.contextPath}/submitOrder";
+					$.get(
+						"${pageContext.request.contextPath}/verifyUnfinishedOrder",
+						{"uid" : "${user.uid }"},
+						function(data){
+							// 验证当前用户有没有未完成订单
+							//if(parseInt(data) == 0){
+								location.href = "${pageContext.request.contextPath}/submitOrder";
+								// 购物项已提交，清空购物车
+								/* $.ajax("${pageContext.request.contextPath}/clearCart"); */
+							//}else{
+							//	alert("你还有未处理的订单哦~");
+							//	location.href = "${pageContext.request.contextPath}/order_list.jsp";
+							//}
+						},
+						"text"
+					)
 				}
 			}
 		</script>
@@ -118,7 +133,7 @@
 				<div style="text-align:right;margin-top:10px;margin-bottom:10px;">
 					<a href="javascript:;" onclick="clearCart()" id="clear" class="clear">清空购物车</a>
 					<a href="javascript:;" onclick="submitOrder()">
-						<input type="submit" width="100" value="提交订单" name="submit" border="0" style="background: url('./images/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+						<input type="submit" width="100" value="结算" name="submit" border="0" style="background: url('./images/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
 						height:35px;width:100px;color:white;">
 					</a>
 				</div>

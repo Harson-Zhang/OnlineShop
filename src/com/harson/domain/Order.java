@@ -29,7 +29,9 @@ public class Order {
 	//该订单中有多少订单项
 	List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
-	
+	public Order() {
+		super();
+	}
 
 	public String getOid() {
 		return oid;

@@ -138,10 +138,48 @@
     <servlet-name>SubmitOrderServlet</servlet-name>
     <url-pattern>/submitOrder</url-pattern>
   </servlet-mapping>
-  
   <error-page>
     <error-code>233</error-code>
     <location>/errorPage/233.jsp</location>
-</error-page>
-  
+  </error-page>
+  <servlet>
+    <description></description>
+    <display-name>VerifyUnfinishedOrderServlet</display-name>
+    <servlet-name>VerifyUnfinishedOrderServlet</servlet-name>
+    <servlet-class>com.harson.web.servlet.VerifyUnfinishedOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VerifyUnfinishedOrderServlet</servlet-name>
+    <url-pattern>/verifyUnfinishedOrder</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ConfirmOrderServlet</display-name>
+    <servlet-name>ConfirmOrderServlet</servlet-name>
+    <servlet-class>com.harson.web.servlet.ConfirmOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConfirmOrderServlet</servlet-name>
+    <url-pattern>/confirmOrder</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogoutServlet</display-name>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>com.harson.web.servlet.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetOrderServlet</display-name>
+    <servlet-name>GetOrderServlet</servlet-name>
+    <servlet-class>com.harson.web.servlet.GetOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetOrderServlet</servlet-name>
+    <url-pattern>/getOrder</url-pattern>
+  </servlet-mapping>
 </web-app>

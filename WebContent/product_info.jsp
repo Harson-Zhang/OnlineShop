@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>会员登录</title>
+<title>商品信息</title>
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
@@ -40,8 +40,9 @@ body {
 		<div class="row">
 			<div
 				style="border: 1px solid #e4e4e4; width: 930px; margin-bottom: 10px; margin: 0 auto; padding: 10px; margin-bottom: 10px;">
-				<a href="./index.htm">首页&nbsp;&nbsp;&gt;</a> <a href="./蔬菜分类.htm">蔬菜&nbsp;&nbsp;&gt;</a>
-				<a>无公害蔬菜</a>
+				<a href="${pageContext.request.contextPath }/default.jsp">首页&nbsp;&gt;</a> <a href="${pageContext.request.contextPath }/productListByCid?cid=${productByPid.cid}">
+				${cname}
+				</a>
 			</div>
 
 			<div style="margin: 0 auto; width: 950px;">
@@ -61,13 +62,13 @@ body {
 					</div>
 
 					<div style="margin: 10px 0 10px 0;">
-						亿家价: <strong style="color: #ef0101;">￥：${productByPid.shop_price }元/份</strong> 参 考 价：
+						地猫价： <strong style="color: #ef0101;">￥${productByPid.shop_price }元/份</strong> &nbsp;参考价：
 						<del>￥${productByPid.market_price }元/份</del>
 					</div>
 
 					<div style="margin: 10px 0 10px 0;">
 						促销: <a target="_blank" title="限时抢购 (2018-12-01 ~ 2019-01-31)"
-							style="background-color: #f07373;">限时抢购</a>
+							style="color: white; background-color: #f64343;">限时抢购</a>
 					</div>
 
 					<div

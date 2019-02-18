@@ -11,12 +11,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.harson.domain.Category;
 import com.harson.domain.Product;
 import com.harson.service.ProductService;
 
 public class ProductInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		//从request中获取参数和cookie
 		String cid = request.getParameter("cid");
 		String page = request.getParameter("page");
@@ -27,13 +29,24 @@ public class ProductInfoServlet extends HttpServlet {
 		if(page==null){
 			page = "1";
 		}
+		if(cid==null){
+			cid = "1";
+		}
+		
 		
 		//将pid传到service层，并返回product对象
 		ProductService service = new ProductService();
 		Product productByPid = service.getProductByPid(pid);
+		String cname = "分类";
+		List<Category> cateList = service.getCategoryList();
+		for(Category ele:cateList){
+			if(cid.equals(ele.getCid()))
+				cname = ele.getCname();
+		}
 		
 		//将product对象和其他。。放入request中，转发给product_info
 		request.setAttribute("cid", cid);
+		request.setAttribute("cname", cname);
 		request.setAttribute("page", page);
 		request.setAttribute("productByPid", productByPid);
 		

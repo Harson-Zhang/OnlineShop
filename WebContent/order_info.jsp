@@ -93,7 +93,7 @@ body {
 				if(isnull(address) || isnull(delivery_name) || isnull(telephone)){
 					alert("请输入完整信息!");
 				}else{
-					$("#orderForm").submit();
+					$("#orderForm").submit();	//使用submit函数后，表单会根据自己的action和method提交
 				}
 			}
 		</script>
@@ -102,6 +102,7 @@ body {
 			<hr />
 			<form class="form-horizontal" id="orderForm" style="margin-top: 5px; margin-left: 150px;"
 				action="${pageContext.request.contextPath }/confirmOrder" method="post">
+				<input id ="oidSubmit" type="hidden" name="oid" value="${order.oid }"></input>
 				<div class="form-group">
 					<label for="username" class="col-sm-1 control-label">地址</label>
 					<div class="col-sm-5">
@@ -112,7 +113,7 @@ body {
 				<div class="form-group">
 					<label for="inputPassword3" class="col-sm-1 control-label">收货人</label>
 					<div class="col-sm-5">
-						<input type="text" class="form-control" id="delivery_name" value="${user.name }" name="delivery_name"
+						<input type="text" class="form-control" id="delivery_name" value="${user.name }" name="name"
 							placeholder="请输入收货人">
 					</div>
 				</div>

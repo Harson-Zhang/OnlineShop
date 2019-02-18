@@ -3,7 +3,7 @@
   <default-config>
     <property name="driverClass">com.mysql.cj.jdbc.Driver</property>
 	<!-- 使用数据库onlineshop -->
-	<property name="jdbcUrl">jdbc:mysql://localhost:3306/onlineshop?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC</property>
+	<property name="jdbcUrl">jdbc:mysql://localhost:3306/onlineshop?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Hongkong</property>
 	<!-- 用户名和密码 -->
 	<property name="user">root</property>
 	<property name="password"></property>

@@ -35,5 +35,12 @@ public class UserService {
 		return user;
 	}
 
+	// 验证是否有未处理订单
+	public int verifyUnfinishedOrder(String uid) throws SQLException {
+		UserDao dao = new UserDao();
+		int unfinished = dao.verifyUnfinishedOrder(uid);
+		return unfinished;
+	}
+
 
 }

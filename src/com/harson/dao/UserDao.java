@@ -43,4 +43,12 @@ public class UserDao {
 		
 		return query;
 	}
+	
+	//返回未处理的订单数
+	public int verifyUnfinishedOrder(String uid) throws SQLException {
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "select count(*) from orders where uid = ?";
+		Long query = (Long)runner.query(sql, new ScalarHandler(), uid);
+		return query.intValue();
+	}
 }

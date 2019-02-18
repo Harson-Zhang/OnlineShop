@@ -1,12 +1,17 @@
 package com.harson.service;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import com.harson.dao.ProductDao;
 import com.harson.domain.Category;
 import com.harson.domain.Order;
+import com.harson.domain.OrderItem;
 import com.harson.domain.PageBean;
 import com.harson.domain.Product;
 import com.harson.utils.DataSourceUtils;
@@ -123,6 +128,45 @@ public class ProductService {
 		}
 		
 		return isSubmitSucceed;
+	}
+
+	//订单更新到数据库
+	public boolean confirmOrder(Order order, String oid) throws SQLException {
+		ProductDao dao = new ProductDao();
+		int rows = dao.updateOrder(order, oid); //存入订单表
+		
+		return rows>0 ? true : false;
+	}
+
+	//获取所有订单
+	public List<Order> getOrders(String uid) throws SQLException {
+		ProductDao dao = new ProductDao();
+		return dao.getOrders(uid);
+	}
+
+	//封装OrderItem项
+	public void setOrderItemsByOid(Order order, String oid) throws SQLException {
+		ProductDao dao = new ProductDao();
+		List<Map<String, Object>> orderItemsQuery = dao.getOrderItemsByOid(oid);
+		//查询出来的orderItemsQuery中包含i.itemid, i.count, i.subtotal,
+		//p.pimage, p.pname, p.shop_price, p.pid, p.cid
+		for(Map<String, Object> map:orderItemsQuery){
+			try {
+				//从map中取出itemid，count，subtotal，封装到orderItem中
+				OrderItem orderItem = new OrderItem();
+				BeanUtils.populate(orderItem, map);
+				//从map中取出pimage,pname, shop_price，封装到product中
+				Product product = new Product();
+				BeanUtils.populate(product, map);
+				//将product封到orderitem里
+				orderItem.setProduct(product);
+				//将orderitem逐个封到order的orderItems（list）里
+				order.getOrderItems().add(orderItem);
+				
+			} catch (IllegalAccessException | InvocationTargetException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 }

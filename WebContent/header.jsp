@@ -18,12 +18,12 @@
 			</c:if>
 			<c:if test="${!empty user }">
 				<li>你好，${user.username}</li>
-				<li><a href="javascript:void(0)">退出</a></li>
+				<li><a href="${pageContext.request.contextPath }/logout">退出</a></li>
 			</c:if>
 			
 		
 			<li><a href="cart.jsp">购物车</a></li>
-			<li><a href="order_list.jsp">我的订单</a></li>
+			<li><a href="${pageContext.request.contextPath }/getOrder">我的订单</a></li>
 		</ol>
 	</div>
 </div>
