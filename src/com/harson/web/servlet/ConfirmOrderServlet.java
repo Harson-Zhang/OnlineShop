@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -22,7 +23,7 @@ public class ConfirmOrderServlet extends HttpServlet {
 		// 存入数据库
 		Map<String, String[]> properties = request.getParameterMap();
 		String [] oidArray = properties.get("oid");
-		String oid = oidArray[0];	//取出oid
+		String oid = oidArray[0];	//从取出oid
 		
 		Order order = new Order();
 		try {
@@ -39,10 +40,21 @@ public class ConfirmOrderServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		//通过oid，取出当前order的总价格total
+		HttpSession session = request.getSession();
+		Order orderToGetTotal = (Order) session.getAttribute("order");
+		Double total = orderToGetTotal.getTotal();
+		
 	/******************/	
-		//在线支付
-		//先放一放
-		response.sendRedirect(request.getContextPath() + "/order_list");
+		//在线支付的参数设置
+		//商户订单号，商户网站订单系统中唯一订单号，必填
+		request.setAttribute("WIDout_trade_no", oid);
+		//付款金额，必填
+		request.setAttribute("WIDtotal_amount", total);
+		//订单名称，必填
+		request.setAttribute("WIDsubject", "用户"+order.getName()+"的订单");
+		//转发给支付宝接口alipay.trade.page.pay.jsp
+		//request.getRequestDispatcher("http://localhost:8080/AlipayInterface/alipay.trade.page.pay.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

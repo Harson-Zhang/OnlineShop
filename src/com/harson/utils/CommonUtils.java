@@ -14,7 +14,9 @@ import org.apache.commons.beanutils.Converter;
 public class CommonUtils {
 	//获取UUID
 	public static String getUid(){
-		return UUID.randomUUID().toString();
+		String s= UUID.randomUUID().toString();
+        return s.replace("-", "");
+		
 	}
 	
 	//从前端获取的数据进行封装
