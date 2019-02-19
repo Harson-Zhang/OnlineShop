@@ -52,9 +52,9 @@ public class ConfirmOrderServlet extends HttpServlet {
 		//付款金额，必填
 		request.setAttribute("WIDtotal_amount", total);
 		//订单名称，必填
-		request.setAttribute("WIDsubject", "用户"+order.getName()+"的订单");
+		request.setAttribute("WIDsubject", "User Order");
 		//转发给支付宝接口alipay.trade.page.pay.jsp
-		//request.getRequestDispatcher("http://localhost:8080/AlipayInterface/alipay.trade.page.pay.jsp").forward(request, response);
+		request.getRequestDispatcher("/alipay.trade.page.pay.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

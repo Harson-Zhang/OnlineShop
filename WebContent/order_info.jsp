@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="img/web_icon.ico" type="image/x-icon" />
 <title>订单详情</title>
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
@@ -128,9 +129,9 @@ body {
 			<hr />
 
 			<div style="margin-top: 5px; margin-left: 5px;">
-				<strong>选择银行：</strong>
+				<strong>选择支付方式：</strong>
 				<p>
-					<br /> <input type="radio" name="pd_FrpId" value="ICBC-NET-B2C"
+					<!-- <br /> <input type="radio" name="pd_FrpId" value="ICBC-NET-B2C"
 						checked="checked" />工商银行 <img src="./bank_img/icbc.bmp"
 						align="middle" />&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio"
 						name="pd_FrpId" value="BOC-NET-B2C" />中国银行 <img
@@ -146,7 +147,12 @@ body {
 						type="radio" name="pd_FrpId" value="CEB-NET-B2C" />光大银行 <img
 						src="./bank_img/guangda.bmp" align="middle" />&nbsp;&nbsp;&nbsp;&nbsp;
 					<input type="radio" name="pd_FrpId" value="CMBCHINA-NET-B2C" />招商银行
-					<img src="./bank_img/cmb.bmp" align="middle" />
+					<img src="./bank_img/cmb.bmp" align="middle" /> -->
+					<input type="radio" name="pd_FrpId" value="Alipay" checked="checked"/>
+					支付宝 &nbsp;&nbsp;&nbsp;&nbsp;
+					<img src="./bank_img/AlipayIcon.png" align="middle" />
+					<br /> <br />
+					
 
 				</p>
 				<hr />

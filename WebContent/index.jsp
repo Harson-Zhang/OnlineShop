@@ -6,6 +6,7 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<head><link rel="shortcut icon" href="img/web_icon.ico" type="image/x-icon" /> </head>
 		<title>地猫商城首页</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 		<script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>

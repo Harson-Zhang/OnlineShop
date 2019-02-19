@@ -169,4 +169,15 @@ public class ProductService {
 		}
 	}
 	
+	//交易成功，设置交易状态
+	public void setOrderState(String oid){
+		ProductDao dao = new ProductDao();
+		try {
+			dao.setOrderState(oid);
+		} catch (SQLException e) {
+			System.out.println("数据库操作：修改订单失败！");
+			e.printStackTrace();
+		}
+	}
+	
 }

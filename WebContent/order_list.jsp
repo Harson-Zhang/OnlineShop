@@ -6,6 +6,7 @@
 
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="img/web_icon.ico" type="image/x-icon" />
 <title>订单展示</title>
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
@@ -28,6 +29,25 @@ body {
 
 <body>
 
+<script type="text/javascript">
+	function payOrder(URL, PARAMS) 
+	{
+		var temp = document.createElement("form"); 
+		temp.action = URL; 
+		temp.method = "post"; 
+		temp.style.display = "none"; 
+		for (var x in PARAMS) { 
+		  var opt = document.createElement("textarea"); 
+		  opt.name = x; 
+		  opt.value = PARAMS[x]; 
+		  temp.appendChild(opt); 
+		} 
+		document.body.appendChild(temp); 
+		temp.submit();
+		//return temp; 
+	}
+	
+</script>
 
 	<!-- 引入header.jsp -->
 	<jsp:include page="/header.jsp"></jsp:include>
@@ -41,7 +61,18 @@ body {
 						<tbody>
 							<tr class="success">
 								<th colspan="3">订单编号:${order.oid }</th>
-								<th colspan="2">状态:${order.state==0 ? "未付款":"已付款"}</th>
+								<th colspan="2">状态:
+								<c:if test="${order.state==0}">
+									未付款&nbsp;&nbsp;&nbsp;&nbsp;
+									<a href="javascript:;" onclick="payOrder(
+									'${pageContext.request.contextPath}/alipay.trade.page.pay.jsp',
+									{'WIDout_trade_no':'${order.oid}', 'WIDtotal_amount':'${order.total}', 'WIDsubject':'User Order'}
+									)">前往付款</a>
+								</c:if>
+								<c:if test="${order.state!=0}">
+									已付款
+								</c:if>
+								</th>
 							</tr>
 							<tr class="warning">
 								<th>图片</th>

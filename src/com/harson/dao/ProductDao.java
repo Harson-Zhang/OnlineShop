@@ -111,4 +111,11 @@ public class ProductDao {
 		List<Map<String, Object>> query = runner.query(sql, new MapListHandler(), oid);
 		return query;
 	}
+
+	//交易成功，设置订单状态
+	public void setOrderState(String oid) throws SQLException {
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "update orders set state = ? where oid = ?";
+		runner.update(sql, 1, oid);
+	}
 }

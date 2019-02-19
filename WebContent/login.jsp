@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<head><link rel="shortcut icon" href="img/web_icon.ico" type="image/x-icon" /> </head>
 <title>会员登录</title>
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
@@ -58,21 +59,21 @@ font {
 						<div class="form-group">
 							<label for="username" class="col-sm-2 control-label">用户名</label>
 							<div class="col-sm-6">
-								<input type="text" class="form-control" id="username" name="username"
+								<input type="text" class="form-control" id="username" name="username" value="${usernameForLogin }"
 									placeholder="请输入用户名">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputPassword3" class="col-sm-2 control-label">密码</label>
 							<div class="col-sm-6">
-								<input type="password" class="form-control" id="inputPassword3" name="password"
+								<input type="password" class="form-control" id="password" name="password"  value="${passwordForLogin }"
 									placeholder="请输入密码">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputPassword3" class="col-sm-2 control-label">验证码</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" id="inputPassword3"
+								<input type="text" class="form-control" id="ver_code"
 									placeholder="请输入验证码">
 							</div>
 							<div class="col-sm-3">
@@ -86,7 +87,7 @@ font {
 										<input type="checkbox" name="autoLogin" value="autoLogin"> 自动登录
 									</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 									<label> 
-										<input type="checkbox"> 记住用户名
+										<input type="checkbox" name="rememberUser" value="rememberUser"> 记住用户
 									</label>
 								</div>
 							</div>
