@@ -42,10 +42,10 @@ public class AutoLoginFilter implements Filter{
 				if("cookie_password".equals(cookie.getName())){
 					password = cookie.getValue();
 				}
-				if("cookie_autoLogin".equals(cookie.getName())){
+				if("autoLogin".equals(cookie.getName())){
 					autoLogin = cookie.getValue();
 				}
-				if("cookie_rememberUser".equals(cookie.getName())){
+				if("rememberUser".equals(cookie.getName())){
 					rememberUser = cookie.getValue();
 				}
 			}

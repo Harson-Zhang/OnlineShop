@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
 				// 设置cookie的持久化时间为1小时（测试方便，先改成2min）
 				cookie_username.setMaxAge(60*60);
 				cookie_password.setMaxAge(60*60);
-				// 设置cookie的携带路径 --- web24下的任何资源
+				// 设置cookie的携带路径 --- onlineShop下的任何资源
 				cookie_username.setPath(request.getContextPath());
 				cookie_password.setPath(request.getContextPath());
 				// 发送cookie

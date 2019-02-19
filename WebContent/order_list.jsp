@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <!DOCTYPE html>
 <html>
 
@@ -56,6 +57,9 @@ body {
 		<div class="row">
 			<div style="margin: 0 auto; margin-top: 10px; width: 950px;">
 				<strong>我的订单</strong>
+				<c:if test="${fn:length(orderList)}==0">
+					当前用户没有订单
+				</c:if>
 				<table class="table table-bordered">
 					<c:forEach items="${orderList }" var="order">
 						<tbody>
