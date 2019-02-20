@@ -24,6 +24,13 @@ public class MailUtils {
 		props.setProperty("mail.host", "smtp.126.com");
 		props.setProperty("mail.smtp.auth", "true");// 指定验证为true
 
+		//修改默认端口，以此适配阿里云
+		final String smtpPort = "465";
+		props.setProperty("mail.smtp.port", smtpPort);
+		props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		props.setProperty("mail.smtp.socketFactory.fallback", "false");
+		props.setProperty("mail.smtp.socketFactory.port", smtpPort);
+		
 		// 创建验证器
 		Authenticator auth = new Authenticator() {
 			public PasswordAuthentication getPasswordAuthentication() {

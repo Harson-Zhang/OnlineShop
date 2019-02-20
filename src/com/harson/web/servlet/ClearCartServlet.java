@@ -12,8 +12,6 @@ public class ClearCartServlet extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.removeAttribute("cart");
-		
-		response.sendRedirect(request.getContextPath() + "/cart.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

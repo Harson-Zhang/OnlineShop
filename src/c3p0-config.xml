@@ -2,12 +2,15 @@
 <c3p0-config>
   <default-config>
     <property name="driverClass">com.mysql.cj.jdbc.Driver</property>
-	<!-- 使用数据库onlineshop -->
-	<property name="jdbcUrl">jdbc:mysql://localhost:3306/onlineshop?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Hongkong</property>
-	<!-- 用户名和密码 -->
-	<property name="user">root</property>
-	<property name="password"></property>
-	<property name="initialPoolSize">5</property>
-	<property name="maxPoolSize">20</property>
+    <!-- 使用数据库onlineshop，因为数据库在服务器本地，不用改localhost也行 -->
+    <property name="jdbcUrl">jdbc:mysql://120.78.5.163:3306/onlineshop?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;autoReconnect=true</property>
+    <!-- 用户名和密码 -->
+    <property name="user">root</property>
+    <property name="password">123</property>
+    <property name="initialPoolSize">5</property>
+    <property name="maxPoolSize">20</property>
+    <property name="idleConnectionTestPeriod" value="20000" /> 
+    <property name="preferredTestQuery" value="SELECT 1"/>
+    <property name="testConnectionOnCheckout" value="true"/> <!-- 因性能消耗大请只在需要的时候使用它，每个connection提交的时候都将校验其有效性。 -->
   </default-config>
 </c3p0-config>

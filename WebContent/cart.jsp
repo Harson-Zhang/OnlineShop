@@ -51,22 +51,22 @@
 						 location.href = "${pageContext.request.contextPath}/login.jsp";
 					 }
 				}else{
-					$.get(
-						"${pageContext.request.contextPath}/verifyUnfinishedOrder",
-						{"uid" : "${user.uid }"},
-						function(data){
-							// 验证当前用户有没有未完成订单
-							//if(parseInt(data) == 0){
-								location.href = "${pageContext.request.contextPath}/submitOrder";
-								// 购物项已提交，清空购物车
-								/* $.ajax("${pageContext.request.contextPath}/clearCart"); */
-							//}else{
-							//	alert("你还有未处理的订单哦~");
-							//	location.href = "${pageContext.request.contextPath}/order_list.jsp";
-							//}
-						},
-						"text"
-					)
+//					$.get(
+//						"${pageContext.request.contextPath}/verifyUnfinishedOrder",
+//						{"uid" : "${user.uid }"},
+//						function(data){
+//							 验证当前用户有没有未完成订单
+//							if(parseInt(data) == 0){
+//								// 购物项已提交，清空购物车
+//					$.ajax("${pageContext.request.contextPath}/clearCart"); 
+					location.href = "${pageContext.request.contextPath}/submitOrder";
+//							//}else{
+//							//	alert("你还有未处理的订单哦~");
+//							//	location.href = "${pageContext.request.contextPath}/order_list.jsp";
+//							//}
+//						},
+//						"text"
+//					);
 				}
 			}
 		</script>

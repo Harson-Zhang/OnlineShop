@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 
@@ -30,25 +30,23 @@ body {
 
 <body>
 
-<script type="text/javascript">
-	function payOrder(URL, PARAMS) 
-	{
-		var temp = document.createElement("form"); 
-		temp.action = URL; 
-		temp.method = "post"; 
-		temp.style.display = "none"; 
-		for (var x in PARAMS) { 
-		  var opt = document.createElement("textarea"); 
-		  opt.name = x; 
-		  opt.value = PARAMS[x]; 
-		  temp.appendChild(opt); 
-		} 
-		document.body.appendChild(temp); 
-		temp.submit();
-		//return temp; 
-	}
-	
-</script>
+	<script type="text/javascript">
+		function payOrder(URL, PARAMS) {
+			var temp = document.createElement("form");
+			temp.action = URL;
+			temp.method = "post";
+			temp.style.display = "none";
+			for ( var x in PARAMS) {
+				var opt = document.createElement("textarea");
+				opt.name = x;
+				opt.value = PARAMS[x];
+				temp.appendChild(opt);
+			}
+			document.body.appendChild(temp);
+			temp.submit();
+			//return temp; 
+		}
+	</script>
 
 	<!-- 引入header.jsp -->
 	<jsp:include page="/header.jsp"></jsp:include>
@@ -65,15 +63,14 @@ body {
 						<tbody>
 							<tr class="success">
 								<th colspan="3">订单编号:${order.oid }</th>
-								<th colspan="2">状态:
-								<c:if test="${order.state==0}">
+								<th colspan="2">状态: <c:if test="${order.state==0}">
 									未付款&nbsp;&nbsp;&nbsp;&nbsp;
-									<a href="javascript:;" onclick="payOrder(
+									<a href="javascript:;"
+											onclick="payOrder(
 									'${pageContext.request.contextPath}/alipay.trade.page.pay.jsp',
 									{'WIDout_trade_no':'${order.oid}', 'WIDtotal_amount':'${order.total}', 'WIDsubject':'User Order'}
 									)">前往付款</a>
-								</c:if>
-								<c:if test="${order.state!=0}">
+									</c:if> <c:if test="${order.state!=0}">
 									已付款
 								</c:if>
 								</th>
@@ -85,35 +82,38 @@ body {
 								<th>数量</th>
 								<th>小计</th>
 							</tr>
-							
+
 							<c:forEach items="${order.orderItems }" var="item">
 								<tr class="active">
-									<td width="60" width="40%">
-										<img src="${pageContext.request.contextPath }/${item.product.pimage }" width="70" height="60">
-									</td>
-									<td width="30%"><a href="${pageContext.request.contextPath}/productInfo?
-										pid=${item.product.pid}&cid=${item.product.cid}"> ${item.product.pname }</a></td>
+									<td width="60" width="40%"><img
+										src="${pageContext.request.contextPath }/${item.product.pimage }"
+										width="70" height="60"></td>
+									<td width="30%"><a
+										href="${pageContext.request.contextPath}/productInfo?
+										pid=${item.product.pid}&cid=${item.product.cid}">
+											${item.product.pname }</a></td>
 									<td width="20%">￥${item.product.shop_price }</td>
 									<td width="10%">${item.count }</td>
 									<td width="15%"><span class="subtotal">￥${item.subtotal }</span></td>
 								</tr>
 							</c:forEach>
-							
+
 							<tr>
-								<th colspan="5" style="text-align:right"> 商品总计：${order.total} </th>
+								<th colspan="5" style="text-align: right">
+									商品总计：${order.total}</th>
 							</tr>
 						</tbody>
 					</c:forEach>
-					
+
 				</table>
 			</div>
 		</div>
-		
+
 	</div>
 
 	<!-- 引入footer.jsp -->
 	<jsp:include page="/footer.jsp"></jsp:include>
-	
+
 </body>
 
 </html>

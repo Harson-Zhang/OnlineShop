@@ -27,10 +27,10 @@ public class AlipayConfig {
     public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzmFn/7ynKd+sPb5q8QgE7oj1iXPwDoVP3Hl44XWlnayYn4Tz5of0JQ7Z5Amua11kN22xggUs1svVEiFu2TpAjuIozlw0cg0/FYz+ZDx9aokjLA8as2vajHc25HWN5n2nZaFtcME5xuqI1a3jf8ymHxkp64CVFx1ZYnxevBzW3ZVqLRilgWG5DrvAr5stz22cJ8FiuGBf44kWglKf0yQ1brV54zsYcgJaY8Son64mDitr6hAw7gBe9/Lu94k8sVMKubgPeuWtveySz3iAv6f93EKQ3BcnSXebfqdCFjpNN120zS66pKezfJovEDwNrlFXqnMLqOoErGUH/u3mQXlYZwIDAQAB";
 
 	// 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-	public static String notify_url = "http://127.0.0.1:8080/OnlineShop/notify_url.jsp";
+	public static String notify_url = "http://120.78.5.163:8080/OnlineShop/notify_url.jsp";
 
 	// 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-	public static String return_url = "http://127.0.0.1:8080/OnlineShop/return_url.jsp";
+	public static String return_url = "http://120.78.5.163:8080/OnlineShop/return_url.jsp";
 
 	// 签名方式
 	public static String sign_type = "RSA2";

@@ -94,6 +94,7 @@ body {
 				if(isnull(address) || isnull(delivery_name) || isnull(telephone)){
 					alert("请输入完整信息!");
 				}else{
+					$.ajax("${pageContext.request.contextPath}/clearCart"); //清空购物车~
 					$("#orderForm").submit();	//使用submit函数后，表单会根据自己的action和method提交
 				}
 			}

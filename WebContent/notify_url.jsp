@@ -74,8 +74,6 @@
 			/******对数据库中的相应订单进行操作******/
 			ProductService service = new ProductService();
 			service.setOrderState(out_trade_no);
-			
-			response.sendRedirect("${pageContext.request.contextPath }/getOrder");
 			//注意：
 			//付款完成后，支付宝系统发送该交易状态通知
 		}
