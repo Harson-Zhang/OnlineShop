@@ -16,7 +16,7 @@ public class LogoutServlet extends HttpServlet {
 		
 		Cookie cookie_username = new Cookie("cookie_username", ""); //此处username为已编码的
 		Cookie cookie_password = new Cookie("cookie_password", "");
-		// 设置cookie的持久化时间为1小时（测试方便，先改成2min）
+		// 设置cookie的持久化时间为0，覆盖原先cookie
 		cookie_username.setMaxAge(0);
 		cookie_password.setMaxAge(0);
 		// 发送cookie

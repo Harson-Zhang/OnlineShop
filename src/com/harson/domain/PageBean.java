@@ -6,7 +6,7 @@ import java.util.List;
 public class PageBean<T> {
 	//当前页的页号
 	private int currentPage;
-	//每页显示的商品条数
+	//每页显示的商品数
 	private int currentCount;
 	//商品的总数
 	private int totalCount;
